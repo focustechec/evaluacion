@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evaluación – Focus Talento Humano</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #f4f6fb; }
+  iframe { display: block; border: 0; width: 100%; height: 100vh; height: 100dvh; }
+</style>
+</head>
+<body>
+<iframe id="evaluacion" title="Evaluación"></iframe>
+<script>
+  var BASE = 'https://script.google.com/macros/s/AKfycbykt1M8mzRaOH5BDa5nhl1_6JB8Nwe-jEJ-1S8hSeB626WAkNYiyy1prr8p--UQhx6C2w/exec';
+  var p = new URLSearchParams(location.search);
+  var token = p.get('eval') || sessionStorage.getItem('eval_token') || '';
+  if (p.get('eval')) {
+    try { sessionStorage.setItem('eval_token', token); } catch (e) {}
+    history.replaceState(null, '', location.pathname);
+  }
+  document.getElementById('evaluacion').src = BASE + '?eval=' + encodeURIComponent(token);
+</script>
+</body>
+</html>
